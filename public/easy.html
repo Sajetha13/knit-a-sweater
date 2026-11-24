@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knit-A-Sweater | Easy Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="game-body">
+    <div class="top-band" aria-hidden="true"></div>
+
+    <div id="start-screen" class="modal-overlay" style="display: flex;">
+        <div class="modal-card modal-card-wide">
+            <h3>Easy Mode</h3>
+            <div class="how-to-sections">
+                <div class="how-to-box">
+                    <h4>The Back-and-Forth Weave</h4>
+                    <p>You're knitting row by row: go forward <strong>D -> F -> J -> K</strong>, then flip back <strong>K -> J -> F -> D</strong> on the return row. Hit <strong>80 stitches</strong> in <strong>32 seconds</strong>.</p>
+                </div>
+                <div class="how-to-box how-to-warning">
+                    <h4>Zero Red Dots</h4>
+                    <p>Wrong key = red dot on the wool. You can keep going, but if even <strong>one red dot</strong> is there when you finish, the sweater unravels. Now go.</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="index.html" class="top-action-btn">← Menu</a>
+                <button id="start-btn" type="button">Start Knitting</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="easy-result-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="easy-result-title">Sweater Complete!</h3>
+            <div id="easy-result-sweater" class="result-sweater-preview" hidden></div>
+            <p id="easy-result-copy">Every loop held together.</p>
+            <div class="modal-actions">
+                <button id="easy-retry-btn" type="button">Knit Again ↺</button>
+                <a href="index.html" class="modal-link-btn">Back to Menu</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-ui" style="display: flex; flex-direction: column; flex: 1;">
+        <header class="game-header">
+            <div class="header-left">
+                <a href="index.html" class="back-btn">← Menu</a>
+                <div class="level-badge">LEVEL: <span>EASY</span></div>
+            </div>
+            <div class="header-right">
+                <button id="easy-pause-btn" type="button" class="top-action-btn">Pause</button>
+                <button id="easy-restart-btn" type="button" class="top-action-btn">Reset ↺</button>
+                <div id="timer-display" class="timer-pill">00:32</div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <h1 class="main-title" style="font-size: clamp(42px, 5vw, 64px); margin-bottom: 14px;">KNIT-A-SWEATER</h1>
+
+            <div class="easy-stage-row">
+                <div class="sweater-stage-card">
+                    <div class="sweater-container" id="easy-sweater-box">
+                        <svg id="easy-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                            <defs>
+                                <clipPath id="easy-sweater-clip">
+                                    <path d="M 275 44 L 266 40 L 253 37 L 240 37 L 236 33 L 227 32 L 205 47 L 194 50 L 170 50 L 146 37 L 137 37 L 101 55 L 85 71 L 78 86 L 76 99 L 74 101 L 73 114 L 51 210 L 49 213 L 44 244 L 44 274 L 48 300 L 53 313 L 59 321 L 60 339 L 62 344 L 67 349 L 83 354 L 92 354 L 106 350 L 118 350 L 126 355 L 145 362 L 170 366 L 199 367 L 239 362 L 271 352 L 289 343 L 299 343 L 305 346 L 322 346 L 328 344 L 335 337 L 340 325 L 340 316 L 349 301 L 354 281 L 354 244 L 349 212 L 347 210 L 343 186 L 336 164 L 331 136 L 329 134 L 328 126 L 320 104 L 297 65 L 288 54 Z" />
+                                </clipPath>
+                                <pattern id="easy-knit-tex" width="14" height="12" patternUnits="userSpaceOnUse">
+                                    <path d="M2 3 L7 9 L12 3" fill="none" stroke="rgba(255,250,244,0.38)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </pattern>
+                            </defs>
+                            <path d="M 275 44 L 266 40 L 253 37 L 240 37 L 236 33 L 227 32 L 205 47 L 194 50 L 170 50 L 146 37 L 137 37 L 101 55 L 85 71 L 78 86 L 76 99 L 74 101 L 73 114 L 51 210 L 49 213 L 44 244 L 44 274 L 48 300 L 53 313 L 59 321 L 60 339 L 62 344 L 67 349 L 83 354 L 92 354 L 106 350 L 118 350 L 126 355 L 145 362 L 170 366 L 199 367 L 239 362 L 271 352 L 289 343 L 299 343 L 305 346 L 322 346 L 328 344 L 335 337 L 340 325 L 340 316 L 349 301 L 354 281 L 354 244 L 349 212 L 347 210 L 343 186 L 336 164 L 331 136 L 329 134 L 328 126 L 320 104 L 297 65 L 288 54 Z" fill="#fffaf4" />
+                            <g id="easy-stitch-layer" clip-path="url(#easy-sweater-clip)"></g>
+                            <rect id="easy-tex-overlay" x="0" y="400" width="400" height="400" fill="url(#easy-knit-tex)" clip-path="url(#easy-sweater-clip)" />
+                            <g id="easy-error-layer" clip-path="url(#easy-sweater-clip)"></g>
+                            <path id="easy-loose-yarn" d="M 200 350 Q 220 375 185 390 T 225 398" fill="none" stroke="#c92f37" stroke-width="4" stroke-linecap="round" opacity="0" />
+                            <image href="assets/easy-sweater.png" x="0" y="0" width="400" height="400" preserveAspectRatio="xMidYMid meet" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="easy-hud-panel">
+                    <p class="stitch-prompt-label">Tap the glowing key in order</p>
+                    <div id="easy-row-dir" class="row-direction-pill">Knit Row → (D F J K)</div>
+                    <div class="keyboard-container">
+                        <div class="key" data-key="d">D</div>
+                        <div class="key" data-key="f">F</div>
+                        <div class="key" data-key="j">J</div>
+                        <div class="key" data-key="k">K</div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="easy-progress-text">0 / 80 stitches</span>
+                        <span>•</span>
+                        <span id="easy-mistakes-text" class="red-dot-counter">0 red dots</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div id="easy-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <p id="easy-feedback" class="live-feedback">Forward then back—keep your rhythm tight!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/easy.js"></script>
+</body>
+</html>

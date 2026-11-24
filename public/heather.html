@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e3c9c9">
+  <title>Knit-A-Sweater | 3rd of December</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/heather.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="top-band" aria-hidden="true"></header>
+    <section class="game" aria-labelledby="game-title">
+      <div class="status-row">
+        <div class="status-left">
+          <a href="index.html" class="back-menu-link">← Menu</a>
+          <div class="level">LEVEL: <span>3RD OF DECEMBER</span></div>
+        </div>
+        <div class="status-right">
+          <button id="start-button" class="top-pill-btn primary" type="button">Start Knitting</button>
+          <button id="restart-button" class="top-pill-btn" type="button">Start Over ↺</button>
+          <div class="timer-wrap">
+            <span class="sr-only">Time remaining</span>
+            <span id="timer" class="timer" aria-live="off">04:30</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="masthead">
+        <h1 id="game-title" class="main-title">KNIT-A-SWEATER</h1>
+      </div>
+
+      <div class="play-area">
+        <div class="sweater-stage">
+          <div id="sweater-box" class="sweater-box">
+            <svg id="sweater" class="sweater" viewBox="0 0 400 400" role="img" aria-label="A crumpled sweater gradually being knitted with colored yarn">
+              <defs>
+                <clipPath id="sweater-clip">
+                  <path id="sweater-shape" d="M 21 218 L 23 226 L 33 233 L 42 245 L 52 263 L 58 264 L 66 262 L 80 254 L 79 248 L 71 237 L 71 228 L 79 206 L 85 202 L 101 186 L 111 185 L 116 200 L 116 207 L 108 213 L 105 220 L 105 234 L 107 238 L 125 257 L 139 267 L 147 279 L 157 286 L 191 301 L 225 328 L 229 327 L 249 311 L 256 309 L 268 297 L 286 286 L 293 279 L 301 260 L 308 261 L 316 283 L 320 286 L 321 304 L 324 306 L 349 310 L 351 308 L 354 291 L 363 274 L 366 262 L 373 251 L 378 238 L 375 211 L 367 192 L 334 149 L 322 131 L 309 106 L 299 96 L 293 92 L 271 87 L 249 78 L 233 83 L 222 82 L 212 78 L 206 72 L 173 83 L 151 88 L 144 94 L 136 106 L 129 113 L 73 143 L 44 161 L 39 168 L 32 191 L 28 197 Z"/>
+                </clipPath>
+                <pattern id="knit-base" width="14" height="12" patternUnits="userSpaceOnUse">
+                  <path d="M2 3 L7 9 L12 3" fill="none" stroke="rgba(36,62,120,0.13)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </pattern>
+                <pattern id="knit-yarn-tex" width="14" height="12" patternUnits="userSpaceOnUse">
+                  <path d="M2 3 L7 9 L12 3" fill="none" stroke="rgba(255,250,244,0.34)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </pattern>
+              </defs>
+              <path d="M 21 218 L 23 226 L 33 233 L 42 245 L 52 263 L 58 264 L 66 262 L 80 254 L 79 248 L 71 237 L 71 228 L 79 206 L 85 202 L 101 186 L 111 185 L 116 200 L 116 207 L 108 213 L 105 220 L 105 234 L 107 238 L 125 257 L 139 267 L 147 279 L 157 286 L 191 301 L 225 328 L 229 327 L 249 311 L 256 309 L 268 297 L 286 286 L 293 279 L 301 260 L 308 261 L 316 283 L 320 286 L 321 304 L 324 306 L 349 310 L 351 308 L 354 291 L 363 274 L 366 262 L 373 251 L 378 238 L 375 211 L 367 192 L 334 149 L 322 131 L 309 106 L 299 96 L 293 92 L 271 87 L 249 78 L 233 83 L 222 82 L 212 78 L 206 72 L 173 83 L 151 88 L 144 94 L 136 106 L 129 113 L 73 143 L 44 161 L 39 168 L 32 191 L 28 197 Z" fill="#fffaf4" />
+              <rect x="0" y="0" width="400" height="400" fill="url(#knit-base)" clip-path="url(#sweater-clip)" />
+              <g id="stitch-layer" clip-path="url(#sweater-clip)"></g>
+              <rect id="yarn-tex-rect" x="0" y="400" width="400" height="400" fill="url(#knit-yarn-tex)" clip-path="url(#sweater-clip)" />
+              <g id="error-layer" clip-path="url(#sweater-clip)"></g>
+              <path id="loose-yarn" d="M 225 320 Q 245 352 205 375 T 248 395" fill="none" stroke="#cf3a3a" stroke-width="4" stroke-linecap="round" opacity="0"/>
+              <image href="assets/heather-sweater.png" x="0" y="0" width="400" height="400" preserveAspectRatio="xMidYMid meet" />
+            </svg>
+          </div>
+          <div class="knit-caption">
+            <span id="progress-label">0%</span> knitted
+            <span class="caption-dot">•</span>
+            <span id="mistake-label">0 red stitches</span>
+            <span class="caption-dot">•</span>
+            <span id="line-counter-label">Line 1 / 34</span>
+          </div>
+          <div class="progress-track" aria-label="Knitting progress"><div id="progress-fill"></div></div>
+        </div>
+
+        <section class="lyrics-panel" aria-label="Typing lyrics">
+          <div class="lyrics-header-bar">
+            <p class="instruction" id="instruction">Type directly over the highlighted lyrics below.</p>
+          </div>
+          <div id="lyrics" class="lyrics" tabindex="0" aria-live="polite"></div>
+          <p id="feedback" class="feedback" aria-live="polite">Press any letter to start — Backspace fixes a slip on the current line.</p>
+        </section>
+      </div>
+
+      <footer class="footer-row">
+        <span>made of words &amp; wool</span>
+        <span>Type directly on screen · Backspace undoes current line · Even 1 red stitch unravels at the end</span>
+        <span class="keyboard-hint">ESC pauses</span>
+      </footer>
+    </section>
+  </main>
+
+  <div id="overlay" class="overlay" hidden>
+    <section class="result-card" role="dialog" aria-modal="true" aria-labelledby="result-title">
+      <h2 id="result-title">A sweater, at last.</h2>
+      <div id="result-sweater" class="result-sweater-preview" hidden></div>
+      <p id="result-copy">Every word found its place.</p>
+      <div class="result-actions">
+        <button id="play-again-button" class="top-pill-btn primary" type="button">Knit Another ↺</button>
+        <a href="index.html" class="top-pill-btn">Back to Menu</a>
+      </div>
+    </section>
+  </div>
+  <script src="js/heather.js"></script>
+</body>
+</html>

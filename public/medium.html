@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knit-A-Sweater | Medium Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="game-body">
+    <div class="top-band" aria-hidden="true"></div>
+
+    <div id="start-screen" class="modal-overlay" style="display: flex;">
+        <div class="modal-card modal-card-wide">
+            <h3>Medium Mode</h3>
+            <div class="how-to-sections">
+                <div class="how-to-box">
+                    <h4>To-and-Fro + Break Words</h4>
+                    <p>Knit forward <strong>S-D-F-J-K-L</strong> and back <strong>L-K-J-F-D-S</strong>. Between rows, a random break prompt (like <em>finger massage</em> or <em>coffee break</em>) pops up—type it out to keep knitting!</p>
+                </div>
+                <div class="how-to-box how-to-warning">
+                    <h4>Zero Red Dots</h4>
+                    <p>Finish all <strong>60 stitches</strong> + break prompts in <strong>65 seconds</strong>. Even <strong>one red dot</strong> at the end unravels the blue cardigan.</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="index.html" class="top-action-btn">← Menu</a>
+                <button id="start-btn" type="button">Start Knitting</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="medium-result-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="medium-result-title">Cardigan Complete!</h3>
+            <div id="medium-result-sweater" class="result-sweater-preview" hidden></div>
+            <p id="medium-result-copy">Every button and seam locked in.</p>
+            <div class="modal-actions">
+                <button id="medium-retry-btn" type="button">Knit Again ↺</button>
+                <a href="index.html" class="modal-link-btn">Back to Menu</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-ui" style="display: flex; flex-direction: column; flex: 1;">
+        <header class="game-header">
+            <div class="header-left">
+                <a href="index.html" class="back-btn">← Menu</a>
+                <div class="level-badge">LEVEL: <span>MEDIUM</span></div>
+            </div>
+            <div class="header-right">
+                <button id="medium-pause-btn" type="button" class="top-action-btn">Pause</button>
+                <button id="medium-restart-btn" type="button" class="top-action-btn">Reset ↺</button>
+                <div id="timer-display" class="timer-pill">01:05</div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <h1 class="main-title" style="font-size: clamp(42px, 5vw, 64px); margin-bottom: 14px;">KNIT-A-SWEATER</h1>
+
+            <div class="easy-stage-row">
+                <div class="sweater-stage-card">
+                    <div class="sweater-container" id="medium-sweater-box">
+                        <svg id="medium-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                            <defs>
+                                <clipPath id="medium-sweater-clip">
+                                    <path d="M 228 47 L 214 44 L 213 54 L 209 67 L 180 127 L 180 135 L 176 136 L 174 139 L 168 139 L 167 143 L 165 133 L 151 120 L 111 88 L 88 64 L 84 64 L 70 75 L 66 80 L 63 100 L 63 109 L 65 110 L 63 111 L 62 115 L 62 142 L 68 185 L 64 186 L 62 227 L 62 252 L 64 253 L 59 281 L 58 308 L 59 320 L 62 327 L 75 339 L 75 344 L 77 346 L 80 375 L 82 376 L 111 376 L 113 344 L 115 343 L 115 339 L 124 328 L 124 323 L 126 322 L 126 308 L 124 307 L 124 301 L 121 296 L 121 282 L 119 278 L 120 276 L 128 280 L 127 299 L 129 300 L 148 300 L 169 296 L 191 296 L 194 295 L 191 272 L 193 265 L 197 295 L 208 296 L 212 295 L 213 291 L 225 289 L 229 285 L 233 285 L 275 268 L 276 263 L 270 246 L 275 242 L 277 253 L 282 253 L 282 249 L 285 249 L 284 260 L 281 261 L 280 264 L 283 283 L 289 291 L 295 292 L 297 290 L 302 293 L 301 300 L 304 301 L 304 305 L 314 325 L 326 325 L 331 321 L 337 319 L 338 316 L 341 316 L 341 310 L 334 288 L 334 282 L 340 268 L 340 256 L 338 249 L 293 175 L 278 144 L 276 137 L 273 134 L 273 129 L 270 124 L 270 120 L 254 81 L 251 80 L 251 75 L 243 59 L 236 51 Z M 111 184 L 121 210 L 120 213 L 116 213 L 114 229 L 113 205 L 110 190 Z M 87 134 L 91 137 L 95 137 L 95 133 L 97 131 L 106 164 L 105 168 L 91 146 L 86 136 Z M 241 111 L 241 128 L 240 134 L 238 136 L 235 114 L 240 113 Z" />
+                                </clipPath>
+                                <pattern id="medium-knit-tex" width="14" height="12" patternUnits="userSpaceOnUse">
+                                    <path d="M2 3 L7 9 L12 3" fill="none" stroke="rgba(255,250,244,0.28)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </pattern>
+                            </defs>
+                            <path d="M 228 47 L 214 44 L 213 54 L 209 67 L 180 127 L 180 135 L 176 136 L 174 139 L 168 139 L 167 143 L 165 133 L 151 120 L 111 88 L 88 64 L 84 64 L 70 75 L 66 80 L 63 100 L 63 109 L 65 110 L 63 111 L 62 115 L 62 142 L 68 185 L 64 186 L 62 227 L 62 252 L 64 253 L 59 281 L 58 308 L 59 320 L 62 327 L 75 339 L 75 344 L 77 346 L 80 375 L 82 376 L 111 376 L 113 344 L 115 343 L 115 339 L 124 328 L 124 323 L 126 322 L 126 308 L 124 307 L 124 301 L 121 296 L 121 282 L 119 278 L 120 276 L 128 280 L 127 299 L 129 300 L 148 300 L 169 296 L 191 296 L 194 295 L 191 272 L 193 265 L 197 295 L 208 296 L 212 295 L 213 291 L 225 289 L 229 285 L 233 285 L 275 268 L 276 263 L 270 246 L 275 242 L 277 253 L 282 253 L 282 249 L 285 249 L 284 260 L 281 261 L 280 264 L 283 283 L 289 291 L 295 292 L 297 290 L 302 293 L 301 300 L 304 301 L 304 305 L 314 325 L 326 325 L 331 321 L 337 319 L 338 316 L 341 316 L 341 310 L 334 288 L 334 282 L 340 268 L 340 256 L 338 249 L 293 175 L 278 144 L 276 137 L 273 134 L 273 129 L 270 124 L 270 120 L 254 81 L 251 80 L 251 75 L 243 59 L 236 51 Z M 111 184 L 121 210 L 120 213 L 116 213 L 114 229 L 113 205 L 110 190 Z M 87 134 L 91 137 L 95 137 L 95 133 L 97 131 L 106 164 L 105 168 L 91 146 L 86 136 Z M 241 111 L 241 128 L 240 134 L 238 136 L 235 114 L 240 113 Z" fill="#fffaf4" />
+                            <g id="medium-stitch-layer" clip-path="url(#medium-sweater-clip)"></g>
+                            <rect id="medium-tex-overlay" x="0" y="400" width="400" height="400" fill="url(#medium-knit-tex)" clip-path="url(#medium-sweater-clip)" />
+                            <g id="medium-error-layer" clip-path="url(#medium-sweater-clip)"></g>
+                            <path id="medium-loose-yarn" d="M 190 325 Q 215 358 175 382 T 215 395" fill="none" stroke="#c92f37" stroke-width="4" stroke-linecap="round" opacity="0" />
+                            <image href="assets/medium-sweater.png" x="0" y="0" width="400" height="400" preserveAspectRatio="xMidYMid meet" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="easy-hud-panel">
+                    <p class="stitch-prompt-label" id="medium-mode-label">6-Key Ribbed Cardigan</p>
+                    <div id="medium-row-dir" class="row-direction-pill">Knit Row → (S D F J K L)</div>
+
+                    <!-- Rhythm Keys (shown during stitch rows) -->
+                    <div id="medium-keys-wrap" class="keyboard-container">
+                        <div class="key" data-key="s">S</div>
+                        <div class="key" data-key="d">D</div>
+                        <div class="key" data-key="f">F</div>
+                        <div class="key" data-key="j">J</div>
+                        <div class="key" data-key="k">K</div>
+                        <div class="key" data-key="l">L</div>
+                    </div>
+
+                    <!-- Knitting Break Word Prompt (shown between rows!) -->
+                    <div id="medium-break-box" class="break-prompt-box" hidden>
+                        <div class="break-badge">KNITTING BREAK — TYPE THIS</div>
+                        <div id="medium-break-word" class="break-word-display"></div>
+                    </div>
+
+                    <div class="progress-stats">
+                        <span id="medium-progress-text">0 / 60 stitches</span>
+                        <span>•</span>
+                        <span id="medium-mistakes-text" class="red-dot-counter">0 red dots</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div id="medium-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <p id="medium-feedback" class="live-feedback">Sweep left-to-right, then purl back!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/medium.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knit-A-Sweater | Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header-container">
+        <button class="how-to-play-btn" type="button" onclick="openHowToPlay()">
+            <span class="question-mark">?</span> HOW TO PLAY
+        </button>
+    </header>
+
+    <main class="main-container">
+        <h1 class="main-title">KNIT-A-SWEATER</h1>
+
+        <div class="cards-grid">
+            <a href="easy.html" class="arch-card">
+                <div class="card-top">
+                    <h2 class="card-title">EASY</h2>
+                    <span class="card-tag">Row Weave</span>
+                </div>
+                <div class="sweater-card-preview">
+                    <img src="assets/menu-easy.png" alt="Crewneck sweater" class="card-sweater-img">
+                </div>
+            </a>
+
+            <a href="medium.html" class="arch-card">
+                <div class="card-top">
+                    <h2 class="card-title">MEDIUM</h2>
+                    <span class="card-tag">Blue Cardigan</span>
+                </div>
+                <div class="sweater-card-preview">
+                    <img src="assets/menu-medium.png" alt="Blue cardigan" class="card-sweater-img">
+                </div>
+            </a>
+
+            <a href="hard.html" class="arch-card">
+                <div class="card-top">
+                    <h2 class="card-title">HARD</h2>
+                    <span class="card-tag">Cable Combos</span>
+                </div>
+                <div class="sweater-card-preview">
+                    <img src="assets/menu-hard.png" alt="Brown sweater" class="card-sweater-img">
+                </div>
+            </a>
+
+            <a href="heather.html" class="arch-card">
+                <div class="card-top">
+                    <h2 class="card-title title-two-lines">3rd of<br>DECEMBER</h2>
+                    <span class="card-tag">Heather Mode</span>
+                </div>
+                <div class="sweater-card-preview">
+                    <img src="assets/menu-heather.png" alt="Crumpled sweater" class="card-sweater-img">
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Short, punchy How To Play Modal -->
+    <div id="howToPlayModal" class="modal-overlay">
+        <div class="modal-card modal-card-wide">
+            <h3>How To Play</h3>
+            <div class="how-to-sections">
+                <div class="how-to-box">
+                    <h4>1. Pick Your Fit</h4>
+                    <p><strong>Easy:</strong> 4-key back-and-forth row weave.<br><strong>Medium:</strong> 6-key cardigan + break words.<br><strong>Hard:</strong> 4-key alternating cable combos.<br><strong>3rd of Dec:</strong> type the lyrics straight up.</p>
+                </div>
+                <div class="how-to-box">
+                    <h4>2. Stay in Rhythm</h4>
+                    <p>Hit the glowing keys before the timer hits <strong>00:00</strong>. Every stitch fills the sweater with yarn from bottom to top.</p>
+                </div>
+                <div class="how-to-box how-to-warning" style="grid-column: 1 / -1;">
+                    <h4>3. Zero Red Dots Allowed</h4>
+                    <p>Miss a key and a <strong>red dot</strong> drops onto the wool. You can keep going—but if there's even <strong>one red dot</strong> left at the end, the whole sweater unravels. Now go knit.</p>
+                </div>
+            </div>
+            <button type="button" onclick="closeHowToPlay()">Got it, let's play</button>
+        </div>
+    </div>
+
+    <script>
+        function openHowToPlay() {
+            document.getElementById('howToPlayModal').style.display = 'flex';
+        }
+        function closeHowToPlay() {
+            document.getElementById('howToPlayModal').style.display = 'none';
+        }
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeHowToPlay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knit-A-Sweater | Hard Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="game-body">
+    <div class="top-band" aria-hidden="true"></div>
+
+    <div id="start-screen" class="modal-overlay" style="display: flex;">
+        <div class="modal-card modal-card-wide">
+            <h3>Hard Mode</h3>
+            <div class="how-to-sections">
+                <div class="how-to-box">
+                    <h4>Cable-Knit Combos</h4>
+                    <p>Each row gives a 4-key alternating cable motif using <strong>E, R, D, F</strong> and <strong>U, I, J, K</strong>. Finish <strong>12 motifs (48 stitches)</strong> in <strong>50 seconds</strong> to knit the sweater rich brown.</p>
+                </div>
+                <div class="how-to-box how-to-warning">
+                    <h4>Zero Red Dots</h4>
+                    <p>Wrong key = red dot on the wool. Even <strong>one red dot</strong> at the end unravels the whole sweater. Lock in.</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="index.html" class="top-action-btn">← Menu</a>
+                <button id="start-btn" type="button">Start Knitting</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="hard-result-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="hard-result-title">Sweater Complete!</h3>
+            <div id="hard-result-sweater" class="result-sweater-preview" hidden></div>
+            <p id="hard-result-copy">Crisp collar, clean espresso knit.</p>
+            <div class="modal-actions">
+                <button id="hard-retry-btn" type="button">Knit Again ↺</button>
+                <a href="index.html" class="modal-link-btn">Back to Menu</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-ui" style="display: flex; flex-direction: column; flex: 1;">
+        <header class="game-header">
+            <div class="header-left">
+                <a href="index.html" class="back-btn">← Menu</a>
+                <div class="level-badge">LEVEL: <span>HARD</span></div>
+            </div>
+            <div class="header-right">
+                <button id="hard-pause-btn" type="button" class="top-action-btn">Pause</button>
+                <button id="hard-restart-btn" type="button" class="top-action-btn">Reset ↺</button>
+                <div id="timer-display" class="timer-pill">00:50</div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <h1 class="main-title" style="font-size: clamp(42px, 5vw, 64px); margin-bottom: 14px;">KNIT-A-SWEATER</h1>
+
+            <div class="easy-stage-row">
+                <div class="sweater-stage-card">
+                    <div class="sweater-container" id="hard-sweater-box">
+                        <svg id="hard-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                            <defs>
+                                <clipPath id="hard-sweater-clip">
+                                    <path d="M 110 61 L 110 64 L 107 65 L 103 71 L 100 80 L 97 82 L 97 85 L 87 102 L 86 111 L 90 122 L 86 123 L 80 142 L 75 147 L 69 158 L 69 164 L 79 179 L 78 181 L 72 182 L 69 185 L 69 190 L 74 197 L 70 204 L 70 210 L 74 213 L 78 213 L 80 211 L 89 210 L 103 205 L 107 206 L 83 215 L 78 215 L 75 218 L 75 225 L 81 226 L 82 234 L 85 235 L 84 244 L 89 256 L 89 262 L 93 262 L 103 251 L 112 247 L 122 246 L 123 243 L 124 250 L 129 259 L 132 260 L 132 263 L 134 265 L 134 271 L 146 273 L 160 272 L 168 269 L 169 265 L 170 267 L 174 267 L 175 265 L 182 264 L 198 258 L 213 256 L 213 252 L 215 251 L 239 260 L 240 265 L 254 272 L 272 275 L 272 268 L 277 264 L 284 254 L 284 244 L 286 245 L 287 252 L 297 255 L 301 260 L 306 260 L 309 235 L 308 226 L 314 224 L 312 216 L 307 213 L 313 212 L 318 207 L 317 200 L 307 199 L 311 198 L 315 193 L 327 184 L 327 177 L 325 173 L 319 170 L 323 159 L 323 154 L 319 153 L 327 138 L 326 131 L 329 130 L 331 127 L 331 119 L 320 91 L 317 90 L 317 85 L 308 77 L 300 73 L 294 72 L 265 50 L 257 52 L 252 62 L 249 62 L 232 72 L 225 74 L 206 72 L 193 65 L 184 57 L 175 45 L 175 37 L 166 38 L 135 52 L 128 51 L 122 53 Z M 133 256 L 139 255 L 159 264 L 150 265 L 144 262 L 140 262 L 137 259 L 134 259 Z M 302 188 L 303 192 L 300 194 L 289 197 L 283 196 L 300 187 Z M 78 167 L 83 167 L 103 182 L 101 183 L 92 179 Z M 281 165 L 282 171 L 289 171 L 277 182 L 276 189 L 279 196 L 274 197 L 272 205 L 278 206 L 279 204 L 285 204 L 294 208 L 282 214 L 280 214 L 279 212 L 273 212 L 275 225 L 279 225 L 285 222 L 287 223 L 286 227 L 278 228 L 279 235 L 283 242 L 280 243 L 277 238 L 271 217 L 267 217 L 267 235 L 261 241 L 260 232 L 269 205 L 274 183 Z M 129 138 L 130 147 L 134 148 L 131 163 L 130 186 L 137 203 L 132 204 L 133 228 L 128 229 L 125 239 L 124 232 L 120 231 L 118 227 L 118 224 L 122 223 L 122 219 L 119 214 L 119 209 L 115 207 L 118 206 L 118 202 L 111 199 L 108 196 L 110 195 L 120 200 L 124 200 L 128 197 L 128 191 L 124 188 L 128 184 L 128 180 L 125 180 L 120 177 L 123 176 L 129 168 L 129 154 L 126 151 L 126 148 L 123 143 L 124 141 L 128 141 Z M 107 107 L 117 124 L 121 134 L 120 136 L 108 118 L 106 112 Z" />
+                                </clipPath>
+                                <pattern id="hard-knit-tex" width="14" height="12" patternUnits="userSpaceOnUse">
+                                    <path d="M2 3 L7 9 L12 3" fill="none" stroke="rgba(255,244,230,0.22)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </pattern>
+                            </defs>
+                            <path d="M 110 61 L 110 64 L 107 65 L 103 71 L 100 80 L 97 82 L 97 85 L 87 102 L 86 111 L 90 122 L 86 123 L 80 142 L 75 147 L 69 158 L 69 164 L 79 179 L 78 181 L 72 182 L 69 185 L 69 190 L 74 197 L 70 204 L 70 210 L 74 213 L 78 213 L 80 211 L 89 210 L 103 205 L 107 206 L 83 215 L 78 215 L 75 218 L 75 225 L 81 226 L 82 234 L 85 235 L 84 244 L 89 256 L 89 262 L 93 262 L 103 251 L 112 247 L 122 246 L 123 243 L 124 250 L 129 259 L 132 260 L 132 263 L 134 265 L 134 271 L 146 273 L 160 272 L 168 269 L 169 265 L 170 267 L 174 267 L 175 265 L 182 264 L 198 258 L 213 256 L 213 252 L 215 251 L 239 260 L 240 265 L 254 272 L 272 275 L 272 268 L 277 264 L 284 254 L 284 244 L 286 245 L 287 252 L 297 255 L 301 260 L 306 260 L 309 235 L 308 226 L 314 224 L 312 216 L 307 213 L 313 212 L 318 207 L 317 200 L 307 199 L 311 198 L 315 193 L 327 184 L 327 177 L 325 173 L 319 170 L 323 159 L 323 154 L 319 153 L 327 138 L 326 131 L 329 130 L 331 127 L 331 119 L 320 91 L 317 90 L 317 85 L 308 77 L 300 73 L 294 72 L 265 50 L 257 52 L 252 62 L 249 62 L 232 72 L 225 74 L 206 72 L 193 65 L 184 57 L 175 45 L 175 37 L 166 38 L 135 52 L 128 51 L 122 53 Z M 133 256 L 139 255 L 159 264 L 150 265 L 144 262 L 140 262 L 137 259 L 134 259 Z M 302 188 L 303 192 L 300 194 L 289 197 L 283 196 L 300 187 Z M 78 167 L 83 167 L 103 182 L 101 183 L 92 179 Z M 281 165 L 282 171 L 289 171 L 277 182 L 276 189 L 279 196 L 274 197 L 272 205 L 278 206 L 279 204 L 285 204 L 294 208 L 282 214 L 280 214 L 279 212 L 273 212 L 275 225 L 279 225 L 285 222 L 287 223 L 286 227 L 278 228 L 279 235 L 283 242 L 280 243 L 277 238 L 271 217 L 267 217 L 267 235 L 261 241 L 260 232 L 269 205 L 274 183 Z M 129 138 L 130 147 L 134 148 L 131 163 L 130 186 L 137 203 L 132 204 L 133 228 L 128 229 L 125 239 L 124 232 L 120 231 L 118 227 L 118 224 L 122 223 L 122 219 L 119 214 L 119 209 L 115 207 L 118 206 L 118 202 L 111 199 L 108 196 L 110 195 L 120 200 L 124 200 L 128 197 L 128 191 L 124 188 L 128 184 L 128 180 L 125 180 L 120 177 L 123 176 L 129 168 L 129 154 L 126 151 L 126 148 L 123 143 L 124 141 L 128 141 Z M 107 107 L 117 124 L 121 134 L 120 136 L 108 118 L 106 112 Z" fill="#fffaf4" />
+                            <g id="hard-stitch-layer" clip-path="url(#hard-sweater-clip)"></g>
+                            <rect id="hard-tex-overlay" x="0" y="400" width="400" height="400" fill="url(#hard-knit-tex)" clip-path="url(#hard-sweater-clip)" />
+                            <g id="hard-error-layer" clip-path="url(#hard-sweater-clip)"></g>
+                            <path id="hard-loose-yarn" d="M 205 268 Q 228 310 186 335 T 222 365" fill="none" stroke="#c92f37" stroke-width="4" stroke-linecap="round" opacity="0" />
+                            <image href="assets/hard-sweater.png" x="0" y="0" width="400" height="400" preserveAspectRatio="xMidYMid meet" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="easy-hud-panel">
+                    <p class="stitch-prompt-label">Current Cable Motif</p>
+                    <div id="hard-motif-strip" class="cable-motif-strip"></div>
+                    <div class="keyboard-container" style="max-width: 300px;">
+                        <div class="key" data-key="e">E</div>
+                        <div class="key" data-key="r">R</div>
+                        <div class="key" data-key="u">U</div>
+                        <div class="key" data-key="i">I</div>
+                        <div class="key" data-key="d">D</div>
+                        <div class="key" data-key="f">F</div>
+                        <div class="key" data-key="j">J</div>
+                        <div class="key" data-key="k">K</div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="hard-progress-text">0 / 48 stitches</span>
+                        <span>•</span>
+                        <span id="hard-mistakes-text" class="red-dot-counter">0 red dots</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div id="hard-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <p id="hard-feedback" class="live-feedback">Watch the cable motif—don't slip!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/hard.js"></script>
+</body>
+</html>

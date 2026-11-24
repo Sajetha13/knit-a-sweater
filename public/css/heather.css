@@ -1,0 +1,405 @@
+@import url('https://fonts.cdnfonts.com/css/lazy-dog');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=League+Spartan:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap');
+
+:root {
+  --pink: #e3c9c9;
+  --periwinkle: #899cb8;
+  --navy: #1a3c61;
+  --ink: #243e78;
+  --rust: #9b4d2e;
+  --coral: #d1604d;
+  --paper: #fffaf4;
+  --line: rgba(26, 60, 97, .18);
+  --red: #c92f37;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--pink);
+  color: var(--navy);
+  font-family: "Nunito", system-ui, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.game-shell {
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--pink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top-band {
+  height: 36px;
+  background: var(--periwinkle);
+  border-radius: 0 0 42px 42px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.game {
+  padding: 14px clamp(24px, 4.5vw, 64px) 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.status-left, .status-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.back-menu-link, .top-pill-btn {
+  background-color: #a8b8cc;
+  color: #1e3a5a;
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  border: 2px solid rgba(26, 60, 97, 0.14);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.back-menu-link:hover, .top-pill-btn:hover {
+  transform: translateY(-2px);
+  background-color: #96a9c1;
+}
+
+.top-pill-btn.primary {
+  background-color: var(--navy);
+  color: var(--paper);
+}
+
+.top-pill-btn.primary:hover {
+  background-color: #27507d;
+}
+
+.level {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.level span {
+  color: var(--coral);
+}
+
+.timer {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 250, 244, 0.78);
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 2px solid rgba(26, 60, 97, 0.14);
+}
+
+.timer.urgent {
+  color: var(--red);
+  border-color: var(--red);
+  animation: pulse .65s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: .6; transform: scale(1.04); }
+}
+
+.masthead {
+  text-align: center;
+  margin: 4px 0 10px;
+}
+
+.main-title {
+  font-family: 'Lazy Dog', 'Fredoka', sans-serif;
+  color: #1a3c61;
+  font-size: clamp(44px, 5.2vw, 74px);
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-align: center;
+  line-height: 1.04;
+  text-shadow: 4px 4px 0px rgba(209, 96, 77, 0.6), -1px -1px 0px #1a3c61;
+}
+
+.play-area {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.88fr) minmax(380px, 1.12fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  flex: 1;
+  min-height: 0;
+}
+
+.sweater-stage {
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sweater-box {
+  width: min(100%, 380px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sweater-box.unravel-shake {
+  animation: shake 0.35s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-5px, 2px) rotate(-1.5deg); }
+  50% { transform: translate(5px, -2px) rotate(1.5deg); }
+  75% { transform: translate(-4px, -2px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.sweater {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 10px 20px rgba(26, 60, 97, 0.14));
+}
+
+.knit-caption {
+  font-size: .86rem;
+  color: #2f4f7f;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.caption-dot { color: var(--rust); margin: 0 6px; }
+
+.progress-track {
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255, 250, 244, .75);
+  overflow: hidden;
+  margin: 8px auto 0;
+  width: min(88%, 330px);
+  border: 1px solid rgba(26, 60, 97, 0.14);
+}
+
+#progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #899cb8, #d1604d);
+  transition: width .2s ease;
+}
+
+.lyrics-panel {
+  min-width: 0;
+  background: rgba(255, 250, 244, 0.45);
+  border: 3px solid rgba(137, 156, 184, 0.55);
+  border-radius: 28px;
+  padding: 24px 30px;
+  box-shadow: 0 12px 32px rgba(26, 60, 97, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.instruction {
+  margin: 0 0 14px;
+  color: #365686;
+  font-size: .92rem;
+  font-weight: 800;
+}
+
+.lyrics {
+  font-family: "Fredoka", "Nunito", sans-serif;
+  font-size: clamp(1.18rem, 2vw, 1.52rem);
+  line-height: 1.65;
+  font-weight: 700;
+  color: rgba(47, 102, 150, 0.45);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+}
+
+.lyric-line {
+  display: block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  transition: all .2s ease;
+}
+
+.lyric-line.past {
+  opacity: .55;
+  font-size: 0.92em;
+}
+
+.lyric-line.current {
+  color: #2f5b8c;
+  background: rgba(255, 250, 244, 0.65);
+  box-shadow: 0 4px 14px rgba(26, 60, 97, 0.06);
+  transform: scale(1.01);
+}
+
+.lyric-line.upcoming {
+  opacity: 0.52;
+}
+
+.char {
+  position: relative;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  transition: color 0.08s ease, background-color 0.08s ease;
+}
+
+.char.correct {
+  color: #1a3c61;
+}
+
+.char.error {
+  color: #ffffff;
+  background-color: #d83a3a;
+  border-radius: 4px;
+  padding: 0 1px;
+}
+
+.char.cursor {
+  background-color: rgba(209, 96, 77, 0.28);
+  color: #1a3c61;
+  box-shadow: 0 3px 0 #d1604d;
+}
+
+.feedback {
+  margin: 14px 0 0;
+  font-size: .9rem;
+  font-weight: 800;
+  color: var(--rust);
+  min-height: 1.4em;
+}
+
+.feedback.error-msg {
+  color: var(--red);
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: .82rem;
+  font-weight: 800;
+  color: #385888;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 36, 62, .48);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.result-card {
+  background: #f6e6e4;
+  border: 4px solid var(--periwinkle);
+  border-radius: 26px;
+  padding: 36px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(26, 60, 97, 0.25);
+}
+
+.result-card h2 {
+  font-family: 'Lazy Dog', 'Fredoka', sans-serif;
+  font-size: 2.3rem;
+  margin: 6px 0 12px;
+  color: var(--navy);
+  text-shadow: 2px 2px 0px rgba(209, 96, 77, 0.45);
+}
+
+.result-sweater-preview {
+  width: 190px;
+  height: 190px;
+  margin: 4px auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-sweater-preview svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 14px rgba(26, 60, 97, 0.18));
+}
+
+.result-card p {
+  margin: 0 0 22px;
+  line-height: 1.55;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 860px) {
+  .play-area { grid-template-columns: 1fr; }
+  .sweater-box { width: 250px; }
+}

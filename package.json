@@ -1,0 +1,12 @@
+{
+  "name": "knit-a-sweater",
+  "version": "2.0.1",
+  "description": "a silly typing game where you knit a sweater.",
+  "main": "cli.js",
+  "bin": {
+    "knit-a-sweater": "cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js"
+  }
+}
