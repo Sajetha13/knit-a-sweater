@@ -17,7 +17,7 @@ It opens right in your browser. (If you cloned this repo locally, run `node cli.
 
 * Pick a sweater from the menu and type the pattern or lyrics on screen before time runs out.
 
-* Every wrong key drops a red dot onto the wool.
+* Every wrong key drops a red thread onto the wool.
 
 * You can still finish the sweater with mistakes—but if there is even **one red dot** left at the end, the whole thing unravels.
 
@@ -25,6 +25,4 @@ It opens right in your browser. (If you cloned this repo locally, run `node cli.
 
 Node.js (zero external dependencies), HTML, CSS, Vanilla JavaScript, and SVG clip-path masking.
 
-## Preview
-
-*(Drop a screenshot here)*
+## Alr, byee
